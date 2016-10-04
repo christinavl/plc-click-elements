@@ -9,6 +9,6 @@ The repository contains elements for Click Router (http://read.cs.ucla.edu/click
  - sniffpackets.{cc/hh} This element enables the sniffer mode of PLC devices and captures every frame overheard by the station. It prints all PLC frame headers with some useful information.
  - plc_elem.click This is a sample Click script that uses the elements above. It assumes that a PLC device is connected to interface eth2 and that it has an IP address in subnet 10.10.11.0/24.
  
- If you use the above code for research, please cite the thesis Measuring, Modeling and Enhancing Power-Line Communications (http://infoscience.epfl.ch/record/218641).
+If you use the above code for research, please cite the thesis Measuring, Modeling and Enhancing Power-Line Communications (http://infoscience.epfl.ch/record/218641).
 
 
