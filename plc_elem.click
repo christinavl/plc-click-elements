@@ -1,6 +1,10 @@
 ////////////////////////////SCRIPT DETAILS////////////////////////////
 // This script is an example that uses the PLC click router elements
 
+// Socket for Click handlers 
+ControlSocket("TCP", 5555);
+
+
 // Our PLC interface is called eth2; to be adapted to the router's PLC interface
 AddressInfo(NAME eth2, DEVNAME eth2);
 ///////////////////////////////////////////////////////////////////////
@@ -43,16 +47,16 @@ cl_in[1] -> HostEtherFilter(eth2, DROP_OWN false, DROP_OTHER true) -> [1]arpq;
 // Discard non-IP packets                                                                               
 cl_in[3] -> Discard();                                                                       
 
-// Example of using a PLC click router element, PhyRatesReq
-FromDevice(eth2, SNIFFER false, PROMISC true) -> phyrates :: ErrorStatsReq(SRC eth2:eth, DST 00:0D:B9:3D:C2:AA, PRIORITY 1, DIRECTION 1) -> cl_in;
-//FromDevice(eth2, SNIFFER false, PROMISC true) -> phyrates :: PhyRatesReq -> cl_in;
-//FromDevice(eth2, SNIFFER false, PROMISC true) -> phyrates :: SniffPackets -> cl_in;
+// Examples of using out PLC Click router elements
+FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: ErrorStatsReq(SRC eth2:eth, DST 00:0D:B9:3D:C2:AA, PRIORITY 1, DIRECTION 1) -> cl_in;
+//FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: PhyRatesReq -> cl_in;
+//FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: SniffPackets -> cl_in;
 
 // Packets for eth2 Queue
 arpq -> cl_ARP :: Classifier(12/0806, 12/0800);
 cl_ARP[0] -> sendQueue_eth;
 cl_ARP[1] -> sendQueue_eth;
-phyrates[1] -> sendQueue_eth;
+plcelem[1] -> sendQueue_eth;
 
 // Simple routing table
 rt :: DirectIPLookup(eth2:ip 0,                                                                        
