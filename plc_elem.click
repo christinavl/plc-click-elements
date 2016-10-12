@@ -48,7 +48,9 @@ cl_in[1] -> HostEtherFilter(eth2, DROP_OWN false, DROP_OTHER true) -> [1]arpq;
 cl_in[3] -> Discard();                                                                       
 
 // Examples of using out PLC Click router elements. Some elements require the MAC address of the peer node for which we request statistics.
+// Output 0 of "plcelem" pushes all incoming messages to the corresponding classifier, except from the PLC management messages for useful statistics.
 FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: ErrorStatsReq(SRC eth2:eth, DST 00:0D:B9:3D:C2:AA, PRIORITY 1, DIRECTION 1) -> cl_in;
+//FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: TonemapReq(SRC eth2:eth, DST 00:0D:B9:3D:C2:AA) -> cl_in;
 //FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: PhyRatesReq -> cl_in;
 //FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: SniffPackets -> cl_in;
 
@@ -56,6 +58,7 @@ FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: ErrorStatsReq(SRC et
 arpq -> cl_ARP :: Classifier(12/0806, 12/0800);
 cl_ARP[0] -> sendQueue_eth;
 cl_ARP[1] -> sendQueue_eth;
+// Output 1 of "plcelem" pushes all the management messages request
 plcelem[1] -> sendQueue_eth;
 
 // Simple routing table

@@ -139,16 +139,16 @@ ErrorStatsReq::print_rx_stats(rx_link_stats *rx) {
     click_chatter("[ErrorStatsReq] MPDUs Failed: %u.", rx->mpdu_fail);
     click_chatter("[ErrorStatsReq] PBs Passed FEC block: %u.", rx->pb_pass);
     click_chatter("[ErrorStatsReq] PBs Failed FEC block: %u.", rx->pb_fail);
-    click_chatter("[ErrorStatsReq] PBs Passed Turbo block: %u.", rx->tbe_pass);
-    click_chatter("[ErrorStatsReq] PBs Failed Turbo block: %u.", rx->tbe_fail);
+    click_chatter("[ErrorStatsReq] Turbo Error bits Passed: %u.", rx->tbe_pass);
+    click_chatter("[ErrorStatsReq] Turbo Error bits Failed: %u.", rx->tbe_fail);
     // Printing stats per tonemap slot. Useful for analyzing noise/capacity per slot.
     for (int i = 0; i < rx->num_rx_intervals; i++) {
         click_chatter("[ErrorStatsReq] Stats for Tonemap Slot %d ", i);
         click_chatter("[ErrorStatsReq]      PHY Rate: %u", rx->rx_interval_stats[i].phyrate);
         click_chatter("[ErrorStatsReq]      PBs Passed: %u", rx->rx_interval_stats[i].pb_pass);
         click_chatter("[ErrorStatsReq]      PBs Failed: %u", rx->rx_interval_stats[i].pb_fail);
-        click_chatter("[ErrorStatsReq]      PBs Passed Turbo block: %u", rx->rx_interval_stats[i].tbe_pass);
-        click_chatter("[ErrorStatsReq]      PBs Failed Turbo block: %u", rx->rx_interval_stats[i].tbe_fail);
+        click_chatter("[ErrorStatsReq]      Turbo Error bits Passed: %u", rx->rx_interval_stats[i].tbe_pass);
+        click_chatter("[ErrorStatsReq]      Turbo Error bits Failed: %u", rx->rx_interval_stats[i].tbe_fail);
     }
 
 }

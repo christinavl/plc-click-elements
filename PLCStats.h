@@ -18,6 +18,7 @@
 #define HPAV_SC_ENABLE 0x01
 
 
+
 // Standard structure of the header of a HomePlug frame
 // The standard messages start with MMType 0x60
 // Vendor specific messages start with MMType 0xA0
@@ -25,6 +26,7 @@ struct click_hp_av_header {
     uint8_t version;
     uint16_t MMType;
 } CLICK_SIZE_PACKED_ATTRIBUTE;
+////////////////////////////////////////
 
 
 
@@ -61,23 +63,12 @@ enum mod_carrier {
     QAM_1024 = 0x7,
 };
 
-struct modulation_stats {
-    uint16_t    no;
-    uint16_t    bpsk;
-    uint16_t    qpsk;
-    uint16_t    qam8;
-    uint16_t    qam16;
-    uint16_t    qam64;
-    uint16_t    qam256;
-    uint16_t    qam1024;
-    uint16_t    unknown;
-};
+#define MAX_BITS_PER_CARRIER 10
 
 ////////////////////////////////////////
 
 
 /// Structures for sniffer frames ///
-
 
 struct click_hp_av_fc {
     uint8_t	del_type:3;
@@ -141,11 +132,9 @@ struct click_sniffer_request {
     uint8_t	control;
     uint8_t	reserved1[4];
 } CLICK_SIZE_PACKED_ATTRIBUTE;
-
-
 /////////////////////////////////
 
-
+/// Structures for PHY-rates stats ///
 struct cm_sta_info {
     uint8_t DA[6];
     uint8_t AvgPHYDR_TX;
@@ -160,10 +149,9 @@ struct click_hp_av_nw_stats_conf {
     uint16_t fmi;
     struct cm_sta_infos sta;
 } CLICK_SIZE_PACKED_ATTRIBUTE; 
-
-
 /////////////////////////////////
 
+/// Structures for error stats ///
 /* Direction types */
 enum statistics_direction {
     HPAV_SD_TX  = 0x00,
@@ -238,7 +226,7 @@ enum statistics_status {
     HPAV_INV_LID    = 0x10,
     HPAV_INV_MAC    = 0x20,
 };
-
+/////////////////////////////////
 
 
 // Raising number x to power n, x^n
