@@ -8,7 +8,7 @@ The repository contains elements for Click Router (http://read.cs.ucla.edu/click
  - errorstatsreq.{cc/hh} This element periodically sends requests for packet delivery statistics between the station and a specific station whose Ethernet address given as an input to the element (DST). The element has to take two more inputs: the direction of communication (i.e., reception or transmission) called DIRECTION, and the priority of the packets called PRIORITY. The priority refers to the one of PLC frame headers as defined in the IEEE 1901 standard.
  - sniffpackets.{cc/hh} This element enables the sniffer mode of PLC devices and captures every frame overheard by the station. It prints all PLC frame headers with some useful information. The element has two handlers to enable and disable the sniffer mode. To access the handlers via telnet, use the command "telnet localhost 5555" (port 5555 is the one used in the example script described below) and then the commands "read plcelem.disable" or "read plcelem.enable", where the name of the SniffPackets element is "plcelem".
  - plc_elem.click This is a sample Click script that uses the elements above. It assumes that a PLC device is connected to interface eth2 and that it has an IP address in subnet 10.10.11.0/24.
- 
-If you use the above code for research, please cite the thesis "Measuring, Modeling and Enhancing Power-Line Communications" (http://infoscience.epfl.ch/record/218641).
 
+The elements have been tested with certain PLC devices with hardware chips such as INT6400. As some management messages are vendor-specific, the operation of the element can depend on the PLC device. 
+The structure of the PLC management frames has been inferred from experiments and from the open-source projects Faifa (http://github.com/ffainelli/faifa) and Qualcomm Atheros Open Powerline Toolkit (http://github.com/qca/open-plc-utils).
 

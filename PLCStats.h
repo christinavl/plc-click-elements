@@ -221,8 +221,14 @@ struct click_hp_av_error_stats_rep {
     uint8_t    direction;
     uint8_t    link_id;
     uint8_t    tei;
-    struct tx_link_stats tx;
-    struct rx_link_stats rx;
+    union {
+        tx_link_stats tx;
+        rx_link_stats rx;
+        struct {
+            tx_link_stats txboth;
+            rx_link_stats rxboth;
+        } CLICK_SIZE_PACKED_ATTRIBUTE;
+    } CLICK_SIZE_PACKED_ATTRIBUTE;
 } CLICK_SIZE_PACKED_ATTRIBUTE;
 
 enum statistics_status {
