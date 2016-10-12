@@ -47,7 +47,7 @@ cl_in[1] -> HostEtherFilter(eth2, DROP_OWN false, DROP_OTHER true) -> [1]arpq;
 // Discard non-IP packets                                                                               
 cl_in[3] -> Discard();                                                                       
 
-// Examples of using out PLC Click router elements
+// Examples of using out PLC Click router elements. Some elements require the MAC address of the peer node for which we request statistics.
 FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: ErrorStatsReq(SRC eth2:eth, DST 00:0D:B9:3D:C2:AA, PRIORITY 1, DIRECTION 1) -> cl_in;
 //FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: PhyRatesReq -> cl_in;
 //FromDevice(eth2, SNIFFER false, PROMISC true) -> plcelem :: SniffPackets -> cl_in;
