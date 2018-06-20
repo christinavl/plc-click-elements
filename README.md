@@ -12,3 +12,4 @@ The repository contains elements for Click Router (http://read.cs.ucla.edu/click
 The elements have been tested with certain PLC devices with hardware chips such as INT6400. As some management messages are vendor-specific, the operation of the element can depend on the PLC device. 
 The structure of the PLC management frames has been inferred from experiments and from the open-source projects Faifa (http://github.com/ffainelli/faifa) and Qualcomm Atheros Open Powerline Toolkit (http://github.com/qca/open-plc-utils).
 
+If you are going to use this work for publication, please cite our IMC paper "Electri-Fi Your Data: Measuring and Combining Power-Line Communications with WiFi". 
